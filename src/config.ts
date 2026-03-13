@@ -2,6 +2,7 @@ process.loadEnvFile();
 
 const config = {
   PORT: getFromEnv("PORT") || 8080,
+  DB_URL: getFromEnv("DB_URL") || "",
 };
 
 function getFromEnv(key: string) {
