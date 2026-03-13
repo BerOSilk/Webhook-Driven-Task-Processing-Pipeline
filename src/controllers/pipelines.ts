@@ -2,7 +2,11 @@ import { Request, Response } from "express";
 import { Pipeline } from "../lib/db/schema.js";
 import { BadRequestError } from "../errors.js";
 import { randomUUID } from "node:crypto";
-import { createPipeline, getPipelines } from "../lib/db/queries/pipelines.js";
+import {
+  createPipeline,
+  deletePipeline,
+  getPipelines,
+} from "../lib/db/queries/pipelines.js";
 
 type ActionType = "capitalize";
 
@@ -33,6 +37,13 @@ export async function GetPipelines(req: Request, res: Response) {
 
   res.set({ "Content-Type": "application/json" });
   res.status(200).json(pipelines);
+}
+
+export async function DeletePipelines(req: Request, res: Response) {
+  const { id } = req.params;
+
+  await deletePipeline(id as string);
+  res.status(204).send();
 }
 
 function isValidAction(action: unknown): action is ActionType {

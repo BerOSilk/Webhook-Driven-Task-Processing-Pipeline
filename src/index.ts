@@ -1,7 +1,11 @@
 import express, { Request, Response } from "express";
 import { config } from "./config.js";
 import { errorHandler } from "./errors.js";
-import { GetPipelines, PostPipeline } from "./controllers/pipelines.js";
+import {
+  DeletePipelines,
+  GetPipelines,
+  PostPipeline,
+} from "./controllers/pipelines.js";
 
 const app = express();
 
@@ -15,6 +19,7 @@ app.get("/api/ping", (req: Request, res: Response) => {
 
 app.post("/api/pipeline", PostPipeline);
 app.get("/api/pipeline", GetPipelines);
+app.delete("/api/pipeline/:id", DeletePipelines);
 
 app.use(errorHandler);
 
