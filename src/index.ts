@@ -1,6 +1,7 @@
 import express, { Request, Response } from "express";
 import { config } from "./config.js";
 import { errorHandler } from "./errors.js";
+import { PostPipeline } from "./controllers/pipelines.js";
 
 const app = express();
 
@@ -11,6 +12,8 @@ app.get("/api/ping", (req: Request, res: Response) => {
     message: "Pong",
   });
 });
+
+app.post("/api/pipeline", PostPipeline);
 
 app.use(errorHandler);
 
