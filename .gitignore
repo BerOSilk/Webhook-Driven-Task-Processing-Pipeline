@@ -1,8 +1,5 @@
 .nvmrc
 dist
 node_modules
-package.json
-tsconfig.json
 .env
 src/lib/db-out
-drizzle.config.ts
