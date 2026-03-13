@@ -1,7 +1,8 @@
 .nvmrc
 dist
 node_modules
-package-lock.json
 package.json
 tsconfig.json
 .env
+src/lib/db-out
+drizzle.config.ts
