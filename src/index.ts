@@ -1,5 +1,6 @@
 import express, { Request, Response } from "express";
 import { config } from "./config.js";
+import { errorHandler } from "./errors.js";
 
 const app = express();
 
@@ -10,5 +11,7 @@ app.get("/api/ping", (req: Request, res: Response) => {
     message: "Pong",
   });
 });
+
+app.use(errorHandler);
 
 app.listen(config.PORT, () => console.log("Server running on:", config.PORT));
