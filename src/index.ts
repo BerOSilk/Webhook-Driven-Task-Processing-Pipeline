@@ -7,6 +7,8 @@ import {
   GetPipelines,
   PostPipeline,
 } from "./controllers/pipelines.js";
+import { initializeWorker, stopWorker } from "./worker/index.js";
+import { handleWebhook } from "./controllers/webhook.js";
 
 const app = express();
 
@@ -23,6 +25,18 @@ app.get("/api/pipeline", GetPipelines);
 app.get("/api/pipeline/:id", GetPipeline);
 app.delete("/api/pipeline/:id", DeletePipelines);
 
+app.post("/api/webhook/:id", handleWebhook);
+
 app.use(errorHandler);
 
+initializeWorker(config.INTERVAL_MS as number, config.MAX_ATTEMPTS as number);
+
 app.listen(config.PORT, () => console.log("Server running on:", config.PORT));
+
+process.on("SIGINT", () => {
+  console.log("Shutting down server");
+
+  stopWorker();
+  console.log("Server Stopped");
+  process.exit(1);
+});
