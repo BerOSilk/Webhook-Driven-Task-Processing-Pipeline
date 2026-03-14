@@ -29,14 +29,12 @@ export async function PostPipeline(req: Request, res: Response) {
   };
 
   const resPipe = await createPipeline(pipeline);
-  res.set({ "Content-Type": "application/json" });
   res.status(201).json(resPipe);
 }
 
 export async function GetPipelines(req: Request, res: Response) {
   const pipelines = await getPipelines();
 
-  res.set({ "Content-Type": "application/json" });
   res.status(200).json(pipelines);
 }
 
@@ -46,7 +44,6 @@ export async function GetPipeline(req: Request, res: Response) {
   const pipeline = await getPipelineById(id as string);
   if (!pipeline) throw new NotFoundError(`Pipeline with ID "${id}" not found`);
 
-  res.set({ "Content-Type": "application/json" });
   res.status(200).json(pipeline);
 }
 

@@ -19,9 +19,6 @@ export function errorHandler(
   next: NextFunction,
 ) {
   void next;
-  res.header({
-    "Content-Type": "application/json",
-  });
 
   if (err instanceof BadRequestError) {
     res.status(400).json({
