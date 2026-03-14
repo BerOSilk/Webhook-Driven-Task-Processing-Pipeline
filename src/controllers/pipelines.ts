@@ -1,10 +1,11 @@
 import { Request, Response } from "express";
 import { Pipeline } from "../lib/db/schema.js";
-import { BadRequestError } from "../errors.js";
+import { BadRequestError, NotFoundError } from "../errors.js";
 import { randomUUID } from "node:crypto";
 import {
   createPipeline,
   deletePipeline,
+  getPipelineById,
   getPipelines,
 } from "../lib/db/queries/pipelines.js";
 
@@ -37,6 +38,16 @@ export async function GetPipelines(req: Request, res: Response) {
 
   res.set({ "Content-Type": "application/json" });
   res.status(200).json(pipelines);
+}
+
+export async function GetPipeline(req: Request, res: Response) {
+  const { id } = req.params;
+
+  const pipeline = await getPipelineById(id as string);
+  if (!pipeline) throw new NotFoundError(`Pipeline with ID "${id}" not found`);
+
+  res.set({ "Content-Type": "application/json" });
+  res.status(200).json(pipeline);
 }
 
 export async function DeletePipelines(req: Request, res: Response) {

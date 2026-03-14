@@ -12,6 +12,14 @@ export async function getPipelines() {
   return result;
 }
 
+export async function getPipelineById(id: string) {
+  const [result] = await db
+    .select()
+    .from(pipelines)
+    .where(eq(pipelines.id, id));
+  return result;
+}
+
 export async function deletePipeline(id: string) {
   await db.delete(pipelines).where(eq(pipelines.id, id));
 }

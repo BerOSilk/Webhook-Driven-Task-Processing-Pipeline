@@ -3,6 +3,7 @@ import { config } from "./config.js";
 import { errorHandler } from "./errors.js";
 import {
   DeletePipelines,
+  GetPipeline,
   GetPipelines,
   PostPipeline,
 } from "./controllers/pipelines.js";
@@ -19,6 +20,7 @@ app.get("/api/ping", (req: Request, res: Response) => {
 
 app.post("/api/pipeline", PostPipeline);
 app.get("/api/pipeline", GetPipelines);
+app.get("/api/pipeline/:id", GetPipeline);
 app.delete("/api/pipeline/:id", DeletePipelines);
 
 app.use(errorHandler);
