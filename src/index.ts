@@ -26,6 +26,7 @@ app.get("/api/pipeline/:id", GetPipeline);
 app.delete("/api/pipeline/:id", DeletePipelines);
 
 app.post("/api/webhook/:id", handleWebhook);
+app.get("/api/webhook/:id", handleWebhook);
 
 app.use(errorHandler);
 
