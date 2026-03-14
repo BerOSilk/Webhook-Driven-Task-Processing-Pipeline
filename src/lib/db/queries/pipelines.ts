@@ -20,6 +20,14 @@ export async function getPipelineById(id: string) {
   return result;
 }
 
+export async function getPipelineBySource(source: string) {
+  const [result] = await db
+    .select()
+    .from(pipelines)
+    .where(eq(pipelines.source, source));
+  return result;
+}
+
 export async function deletePipeline(id: string) {
   await db.delete(pipelines).where(eq(pipelines.id, id));
 }
