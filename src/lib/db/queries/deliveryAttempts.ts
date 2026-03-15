@@ -11,6 +11,9 @@ export async function createDeliveryAttempt(deliveryAttempt: DeliveryAttempts) {
 }
 
 export async function getDeliveryAttempts(jobId: string) {
-  const result = await db.select().from(deliveryAttempts).where(eq(deliveryAttempts.jobID, jobId));
+  const result = await db
+    .select()
+    .from(deliveryAttempts)
+    .where(eq(deliveryAttempts.jobID, jobId));
   return result;
 }

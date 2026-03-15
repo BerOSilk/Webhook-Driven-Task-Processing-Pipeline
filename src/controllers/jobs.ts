@@ -6,44 +6,44 @@ import { validate } from "uuid";
 import { getDeliveryAttempts } from "../lib/db/queries/deliveryAttempts.js";
 
 export async function GetJobs(req: Request, res: Response) {
-    const { status, pipelineID, limit = 50, offset = 0 } = req.query;
+  const { status, pipelineID, limit = 50, offset = 0 } = req.query;
 
-    const query: jobQueryObject = {
-        status: status as string,
-        pipelineId: pipelineID as string,
-        limit: limit as number,
-        offset: offset as number,
-    }
+  const query: jobQueryObject = {
+    status: status as string,
+    pipelineId: pipelineID as string,
+    limit: limit as number,
+    offset: offset as number,
+  };
 
-    const jobs = await getJobs(query);
+  const jobs = await getJobs(query);
 
-    res.status(200).json(jobs);
+  res.status(200).json(jobs);
 }
 
 export async function GetJob(req: Request, res: Response) {
-    const { id } = req.params;
+  const { id } = req.params;
 
-    const validUUID = validate(id);
-    if (!validUUID) {
-        throw new BadRequestError("Invalid UUID format");
-    }
+  const validUUID = validate(id);
+  if (!validUUID) {
+    throw new BadRequestError("Invalid UUID format");
+  }
 
-    const query: jobQueryObject = {
-        id: id as string,
-    }
-    const [job] = await getJobs(query);
-    if (!job) throw new NotFoundError(`Job with id ${id} does not exist`);
+  const query: jobQueryObject = {
+    id: id as string,
+  };
+  const [job] = await getJobs(query);
+  if (!job) throw new NotFoundError(`Job with id ${id} does not exist`);
 
-    res.status(200).json(job);
+  res.status(200).json(job);
 }
 
 export async function GetJobDeliveries(req: Request, res: Response) {
-    const { id } = req.params;
-    const validUUID = validate(id);
-    if (!validUUID) {
-        throw new BadRequestError("Invalid UUID format");
-    }
+  const { id } = req.params;
+  const validUUID = validate(id);
+  if (!validUUID) {
+    throw new BadRequestError("Invalid UUID format");
+  }
 
-    const deliveries = await getDeliveryAttempts(id as string);
-    res.status(200).json(deliveries);
+  const deliveries = await getDeliveryAttempts(id as string);
+  res.status(200).json(deliveries);
 }

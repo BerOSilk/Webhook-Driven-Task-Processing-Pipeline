@@ -30,13 +30,18 @@ export async function updateJobProcessedPayload(
 }
 
 export async function getJobs(query: jobQueryObject) {
-  const result = await db.select().from(jobs).where(
-    and(
-      query.id ? eq(jobs.id, query.id) : undefined,
-      query.status ? eq(jobs.status, query.status) : undefined,
-      query.pipelineId ? eq(jobs.pipelineID, query.pipelineId) : undefined
+  const result = await db
+    .select()
+    .from(jobs)
+    .where(
+      and(
+        query.id ? eq(jobs.id, query.id) : undefined,
+        query.status ? eq(jobs.status, query.status) : undefined,
+        query.pipelineId ? eq(jobs.pipelineID, query.pipelineId) : undefined,
+      ),
     )
-  ).limit(query.limit ? query.limit : 50).offset(query.offset ? query.offset : 0)
+    .limit(query.limit ? query.limit : 50)
+    .offset(query.offset ? query.offset : 0)
     .orderBy(jobs.createdAt);
   return result;
 }
