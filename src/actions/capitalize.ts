@@ -4,11 +4,10 @@ export type capitalizeConfig = {
   ignoreFields?: string[];
 };
 
-export async function capitalizeAction(
+export function capitalizeAction(
   payload: Record<string, unknown>,
   config: capitalizeConfig,
 ) {
-  console.log(payload);
   const result: Record<string, unknown> = {
     data: { ...payload },
   };
@@ -31,6 +30,5 @@ export async function capitalizeAction(
 
   result._processedAt = new Date().toISOString();
   result._completed = true;
-  console.log(result);
   return result;
 }

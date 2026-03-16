@@ -1,5 +1,6 @@
 import { NotFoundError } from "../errors.js";
 import { capitalizeAction, capitalizeConfig } from "./capitalize.js";
+import { replaceAction, ReplaceConfig } from "./replace.js";
 
 export async function processAction(
   actionType: string,
@@ -15,6 +16,11 @@ export async function processAction(
       return capitalizeAction(
         realPayload as Record<string, unknown>,
         config as capitalizeConfig,
+      );
+    case "replace":
+      return replaceAction(
+        realPayload as Record<string, unknown>,
+        config as ReplaceConfig,
       );
     default:
       throw new NotFoundError("Undefined Action");
