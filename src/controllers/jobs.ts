@@ -4,6 +4,7 @@ import { jobQueryObject } from "../types/jobs.js";
 import { BadRequestError, NotFoundError } from "../errors.js";
 import { validate } from "uuid";
 import { getDeliveryAttempts } from "../lib/db/queries/deliveryAttempts.js";
+import { getJobAttempts } from "../lib/db/queries/jobAttempts.js";
 
 export async function GetJobs(req: Request, res: Response) {
   const { status, pipelineID, limit = 50, offset = 0 } = req.query;
@@ -46,4 +47,14 @@ export async function GetJobDeliveries(req: Request, res: Response) {
 
   const deliveries = await getDeliveryAttempts(id as string);
   res.status(200).json(deliveries);
+}
+
+export async function GetJobAttempts(req: Request, res: Response) {
+  const { id } = req.params;
+  const validUUID = validate(id);
+  if (!validUUID) {
+    throw new BadRequestError("Invalid UUID format");
+  }
+  const attempts = await getJobAttempts(id as string);
+  res.status(200).json(attempts);
 }
