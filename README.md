@@ -65,3 +65,23 @@ The easiest way to run the entire stack is using Docker Compose:
 ```bash
 docker-compose up --build
 ```
+
+---
+
+## Endpoints
+
+### Pipelines (`/api/pipeline`)
+
+| HTTP | Endpoint | Description | Request Body |
+|---|---|---|---|
+| POST | `/api/pipeline` | Create a new Pipeline | ```json 
+{ 
+    name: string 
+    actionType: "capitalize" | "replace" | "filter"
+    actionConfig: capitalizeConfig | replaceConfig | filterConfig
+    subscribers: {
+        url: string
+        method: string
+    }[]
+} 
+```
