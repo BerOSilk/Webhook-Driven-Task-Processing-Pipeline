@@ -32,10 +32,7 @@ export function filterAction(
       return;
     }
     if (mode === "omit") return;
-    result[key] = filterProcessor(
-      mode,
-      value,
-    );
+    result[key] = filterProcessor(mode, value);
   });
   return result;
 }

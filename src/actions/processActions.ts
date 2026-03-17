@@ -27,7 +27,7 @@ export async function processAction(
       return filterAction(
         realPayload as Record<string, unknown>,
         config as filterConfig,
-      )
+      );
     default:
       throw new NotFoundError("Undefined Action");
   }
