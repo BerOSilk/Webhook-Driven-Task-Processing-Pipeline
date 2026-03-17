@@ -293,7 +293,7 @@ This endpoint accepts both POST & GET with any body/queries you pass, it will cr
 1. **Capitalize**:
     Capitalize the request payload before sending it to subscribers
     
-    <pre>
+    ```json
     {
         CapitalizeConfig: {
             mode: "capitalize" | "uppercase" | "lowercase" | "titlecase" # type of capitalization you want to do
@@ -301,19 +301,18 @@ This endpoint accepts both POST & GET with any body/queries you pass, it will cr
             ignoreFields?: string[] # fields to ignore while performing actions
         }
     }
-    </pre>
+    ```
 
     ### Capitalization modes:
-    --
-        1. `capitalize`: makes only the first letter uppercase and the rest to lowercase (`hEllO wORld` -> `Hello world`) 
-        2. `uppercase`: makes the whole text uppercase (`hEllO wORld` -> `HELLO WORLD`) 
-        3. `lowercase`: makes the whole text lowercase (`hEllO wORld` -> `hello world`) 
-        4. `titlecase`: converts the text to title case (`hEllO wORld` -> `Hello World`) 
+    1. `capitalize`: makes only the first letter uppercase and the rest to lowercase (`hEllO wORld` -> `Hello world`) 
+    2. `uppercase`: makes the whole text uppercase (`hEllO wORld` -> `HELLO WORLD`) 
+    3. `lowercase`: makes the whole text lowercase (`hEllO wORld` -> `hello world`) 
+    4. `titlecase`: converts the text to title case (`hEllO wORld` -> `Hello World`) 
 
 2. **Replace**:
     Replace specific parts of text with another text
 
-    <pre>
+    ```json
     {
         ReplaceConfig: {
             mode: "replace-first" | "replace-all" | "replace-last" # type of replacment you want to do
@@ -322,13 +321,12 @@ This endpoint accepts both POST & GET with any body/queries you pass, it will cr
             goThrough?: boolean # go through the whole text fields
         }
     }
-    </pre>
+    ```
 
     ### Replacment modes:
-    --
-        1. `replace-first`: replace only the first occurance of the word (`This is a replacment is` -> `This word a replacment is`)
-        2. `replace-all`: replace all occurances of the word (`This is a replacment is` -> `This word a replacment word`)
-        3. `replace-last`: replace only the last occurance of the word (`This is a replacment is` -> `This is a replacment word`)
+    1. `replace-first`: replace only the first occurance of the word (`This is a replacment is` -> `This word a replacment is`)
+    2. `replace-all`: replace all occurances of the word (`This is a replacment is` -> `This word a replacment word`)
+    3. `replace-last`: replace only the last occurance of the word (`This is a replacment is` -> `This is a replacment word`)
 
 3. **Filter**:
     Filters sensitive fields of an object
@@ -342,11 +340,12 @@ This endpoint accepts both POST & GET with any body/queries you pass, it will cr
         }
     }
     ```
-
+    
+    
     ### Filtering modes:
-        1. `omit`: omits the fields from the payload
-        2. `redaction`: replace the field value with "[REDACTED]"
-        3. `masking`: reduce the field value to only include the last 4 values in it (`Baraa Khalil` -> `****alil`)
+    1. `omit`: omits the fields from the payload
+    2. `redaction`: replace the field value with "[REDACTED]"
+    3. `masking`: reduce the field value to only include the last 4 values in it (`Baraa Khalil` -> `****alil`)
     
     By default the filter action filters password, token, credit_card, ssn & api_key, if you want to keep them include them in the ignoreFields option.
 
