@@ -72,16 +72,108 @@ docker-compose up --build
 
 ### Pipelines (`/api/pipeline`)
 
-| HTTP | Endpoint | Description | Request Body |
-|------|----------|-------------|--------------|
-| POST | `/api/pipeline` | Create a new Pipeline | <pre>{
-  "name": "string",
-  "actionType": "capitalize" | "replace" | "filter",
-  "actionConfig": "capitalizeConfig | replaceConfig | filterConfig",
+| HTTP | Endpoint |
+|------|----------|
+| POST | `/api/pipeline` |
+
+# Request Body:
+<pre>
+{
+  "name": string
+  "actionType": "capitalize" | "replace" | "filter"
+  "actionConfig": capitalizeConfig | replaceConfig | filterConfig
   "subscribers": [
     {
-      "url": "string",
-      "method": "string"
+      "url": string
+      "method": string
     }
   ]
-}</pre> |
+}
+</pre>
+
+# Success Response:
+<pre>
+{
+    "id": UUID
+    "createdAt": timestamp
+    "updatedAt": timestamp
+    "name": string
+    "source:" /webhook/{UUID}
+    "actionType": string 
+    "subscribers": [
+        {
+            "url": string
+            "method": string
+        }
+    ],
+    "actionConfig": capitalizeConfig | replaceConfig | filterConfig
+}
+</pre>
+
+| HTTP | Endpoint |
+|------|----------|
+| GET  | `/api/pipeline` |
+
+# Success Response:
+<pre>
+{
+    [
+        {
+            "id": UUID
+            "createdAt": timestamp
+            "updatedAt": timestamp
+            "name": string
+            "source:" /webhook/{UUID}
+            "actionType": string 
+            "subscribers": [
+                {
+                    "url": string
+                    "method": string
+                }
+            ],
+            "actionConfig": capitalizeConfig | replaceConfig | filterConfig
+        }
+    ]
+}
+</pre>
+
+| HTTP | Endpoint |
+|------|----------|
+| GET  | `/api/pipeline/:id` |
+
+# Success Response:
+<pre>
+{
+    "id": UUID
+    "createdAt": timestamp
+    "updatedAt": timestamp
+    "name": string
+    "source:" /webhook/{UUID}
+    "actionType": string 
+    "subscribers": [
+        {
+            "url": string
+            "method": string
+        }
+    ],
+    "actionConfig": capitalizeConfig | replaceConfig | filterConfig
+}
+</pre>
+
+| HTTP | Endpoint |
+|------|----------|
+| DELETE  | `/api/pipeline/:id` |
+
+
+### Webhook (`/api/webhook/:id`)
+
+| HTTP | Endpoint |
+|------|----------|
+| POST  | `/api/webhook/:id` |
+|------|----------|
+| GET  | `/api/webhopok/:id` |
+
+This endpoint accepts both POST & GET with any body/queries you pass, it will create a new job, and queue it to run the action when the time comes
+
+### Job (`/api/job`)
+
