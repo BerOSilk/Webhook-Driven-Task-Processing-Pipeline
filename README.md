@@ -28,7 +28,7 @@ The system consists of a few core components:
 ### Prerequisites
 
 *   [Node.js](https://nodejs.org/) (v18 or later recommended)
-*   [Docker](https://www.docker.com/) and [Docker Compose](https://docs.docker.com/compose/) (for containerized setup)
+*   [Docker](https://www.docker.com/) and [Docker Compose](https://docs.docker.com/compose/)
 *   [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/)
 *   (OPTIONAL IF YOU DON'T WANT TO USE DOCKER) [PostgreSQL](https://www.postgresql.org/)
 
@@ -45,7 +45,7 @@ The system consists of a few core components:
     npm install
     ```
 
-3.  **cp .Environment Configuration**
+3.  **Environment Configuration**
     ```bash
     cp .env.example .env
     ```
@@ -54,11 +54,14 @@ The system consists of a few core components:
     ```bash
     npm run generate
     npm run migrate
-
-### Running with Docker (Recommended)
-    The easiest way to run the entire stack is using Docker Compose:
-    ```bash
-    docker-compose up --build
     ```
 
-    This will start the API server, the task processor worker, and the database. The API will be available at http://localhost:8080.
+---
+
+## Running with Docker (Recommended)
+
+The easiest way to run the entire stack is using Docker Compose:
+
+```bash
+docker-compose up --build
+```
