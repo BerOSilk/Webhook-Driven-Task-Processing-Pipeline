@@ -76,7 +76,7 @@ docker-compose up --build
 |------|----------|
 | POST | `/api/pipeline` |
 
-# Request Body:
+#### Request Body:
 <pre>
 {
   "name": string
@@ -91,7 +91,7 @@ docker-compose up --build
 }
 </pre>
 
-# Success Response:
+#### Success Response:
 <pre>
 {
     "id": UUID
@@ -114,7 +114,7 @@ docker-compose up --build
 |------|----------|
 | GET  | `/api/pipeline` |
 
-# Success Response:
+#### Success Response:
 <pre>
 {
     [
@@ -141,7 +141,7 @@ docker-compose up --build
 |------|----------|
 | GET  | `/api/pipeline/:id` |
 
-# Success Response:
+#### Success Response:
 <pre>
 {
     "id": UUID
