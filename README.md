@@ -304,6 +304,7 @@ This endpoint accepts both POST & GET with any body/queries you pass, it will cr
     </pre>
 
     ### Capitalization modes:
+    --
         1. `capitalize`: makes only the first letter uppercase and the rest to lowercase (`hEllO wORld` -> `Hello world`) 
         2. `uppercase`: makes the whole text uppercase (`hEllO wORld` -> `HELLO WORLD`) 
         3. `lowercase`: makes the whole text lowercase (`hEllO wORld` -> `hello world`) 
@@ -324,6 +325,7 @@ This endpoint accepts both POST & GET with any body/queries you pass, it will cr
     </pre>
 
     ### Replacment modes:
+    --
         1. `replace-first`: replace only the first occurance of the word (`This is a replacment is` -> `This word a replacment is`)
         2. `replace-all`: replace all occurances of the word (`This is a replacment is` -> `This word a replacment word`)
         3. `replace-last`: replace only the last occurance of the word (`This is a replacment is` -> `This is a replacment word`)
@@ -342,6 +344,7 @@ This endpoint accepts both POST & GET with any body/queries you pass, it will cr
     </pre>
 
     ### Filtering modes:
+    --
         1. `omit`: omits the fields from the payload
         2. `redaction`: replace the field value with "[REDACTED]"
         3. `masking`: reduce the field value to only include the last 4 values in it (`Baraa Khalil` -> `****alil`)
