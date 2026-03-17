@@ -333,7 +333,7 @@ This endpoint accepts both POST & GET with any body/queries you pass, it will cr
 3. **Filter**:
     Filters sensitive fields of an object
 
-    <pre>
+    ```json
     {
         FilterConfig: {
             mode: "omit" | "redaction" | "masking" # type of filtering you want to do
@@ -341,10 +341,9 @@ This endpoint accepts both POST & GET with any body/queries you pass, it will cr
             ignoreFields: string[] # fields to ignore while performing actions
         }
     }
-    </pre>
+    ```
 
     ### Filtering modes:
-    --
         1. `omit`: omits the fields from the payload
         2. `redaction`: replace the field value with "[REDACTED]"
         3. `masking`: reduce the field value to only include the last 4 values in it (`Baraa Khalil` -> `****alil`)
