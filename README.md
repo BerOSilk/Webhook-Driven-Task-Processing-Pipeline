@@ -293,7 +293,7 @@ This endpoint accepts both POST & GET with any body/queries you pass, it will cr
 1. **Capitalize**:
     Capitalize the request payload before sending it to subscribers
     
-    ```json
+    <pre>
     {
         CapitalizeConfig: {
             mode: "capitalize" | "uppercase" | "lowercase" | "titlecase" # type of capitalization you want to do
@@ -301,7 +301,7 @@ This endpoint accepts both POST & GET with any body/queries you pass, it will cr
             ignoreFields?: string[] # fields to ignore while performing actions
         }
     }
-    ```
+    </pre>
 
     ### Capitalization modes:
     1. `capitalize`: makes only the first letter uppercase and the rest to lowercase (`hEllO wORld` -> `Hello world`) 
@@ -312,7 +312,7 @@ This endpoint accepts both POST & GET with any body/queries you pass, it will cr
 2. **Replace**:
     Replace specific parts of text with another text
 
-    ```json
+    <pre>
     {
         ReplaceConfig: {
             mode: "replace-first" | "replace-all" | "replace-last" # type of replacment you want to do
@@ -321,7 +321,7 @@ This endpoint accepts both POST & GET with any body/queries you pass, it will cr
             goThrough?: boolean # go through the whole text fields
         }
     }
-    ```
+    </pre>
 
     ### Replacment modes:
     1. `replace-first`: replace only the first occurance of the word (`This is a replacment is` -> `This word a replacment is`)
@@ -331,7 +331,7 @@ This endpoint accepts both POST & GET with any body/queries you pass, it will cr
 3. **Filter**:
     Filters sensitive fields of an object
 
-    ```json
+    <pre>
     {
         FilterConfig: {
             mode: "omit" | "redaction" | "masking" # type of filtering you want to do
@@ -339,7 +339,7 @@ This endpoint accepts both POST & GET with any body/queries you pass, it will cr
             ignoreFields: string[] # fields to ignore while performing actions
         }
     }
-    ```
+    </pre>
     
     
     ### Filtering modes:
