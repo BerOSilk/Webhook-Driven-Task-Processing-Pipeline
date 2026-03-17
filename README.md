@@ -73,15 +73,15 @@ docker-compose up --build
 ### Pipelines (`/api/pipeline`)
 
 | HTTP | Endpoint | Description | Request Body |
-|---|---|---|---|
-| POST | `/api/pipeline` | Create a new Pipeline | ```json 
-{ 
-    name: string 
-    actionType: "capitalize" | "replace" | "filter"
-    actionConfig: capitalizeConfig | replaceConfig | filterConfig
-    subscribers: {
-        url: string
-        method: string
-    }[]
-} 
-```
+|------|----------|-------------|--------------|
+| POST | `/api/pipeline` | Create a new Pipeline | <pre>{
+  "name": "string",
+  "actionType": "capitalize" | "replace" | "filter",
+  "actionConfig": "capitalizeConfig | replaceConfig | filterConfig",
+  "subscribers": [
+    {
+      "url": "string",
+      "method": "string"
+    }
+  ]
+}</pre> |
