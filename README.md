@@ -296,9 +296,9 @@ This endpoint accepts both POST & GET with any body/queries you pass, it will cr
     <pre>
     {
         CapitalizeConfig: {
-            mode: "capitalize" | "uppercase" | "lowercase" | "titlecase" # type of capitalization you want to do
-            fields?: string[] # fields to perform the actions on
-            ignoreFields?: string[] # fields to ignore while performing actions
+            mode: "capitalize" | "uppercase" | "lowercase" | "titlecase"    // type of capitalization you want to do
+            fields?: string[]                                               // fields to perform the actions on
+            ignoreFields?: string[]                                         // fields to ignore while performing actions
         }
     }
     </pre>
@@ -315,10 +315,10 @@ This endpoint accepts both POST & GET with any body/queries you pass, it will cr
     <pre>
     {
         ReplaceConfig: {
-            mode: "replace-first" | "replace-all" | "replace-last" # type of replacment you want to do
-            words: string[] # replace these words
-            replaceWith: string[] # replace with these words
-            goThrough?: boolean # go through the whole text fields
+            mode: "replace-first" | "replace-all" | "replace-last"  // type of replacment you want to do
+            words: string[]                                         // replace these words
+            replaceWith: string[]                                   // replace with these words
+            goThrough?: boolean                                     // go through the whole text fields
         }
     }
     </pre>
@@ -334,9 +334,9 @@ This endpoint accepts both POST & GET with any body/queries you pass, it will cr
     <pre>
     {
         FilterConfig: {
-            mode: "omit" | "redaction" | "masking" # type of filtering you want to do
-            fields: string[] # fields to filter
-            ignoreFields: string[] # fields to ignore while performing actions
+            mode: "omit" | "redaction" | "masking"  // type of filtering you want to do
+            fields: string[]                        // fields to filter
+            ignoreFields: string[]                  // fields to ignore while performing actions
         }
     }
     </pre>
