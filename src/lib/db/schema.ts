@@ -41,6 +41,18 @@ export const jobs = pgTable("jobs", {
   attempts: integer("attempts").default(0),
 });
 
+export const jobAttempts = pgTable("job_attempts", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  jobID: uuid("job_id")
+    .notNull()
+    .references(() => jobs.id, {
+      onDelete: "cascade",
+    }),
+  status: varchar("status", { length: 50 }),
+  errorMessage: text("error_message"),
+  attemptedAt: timestamp("attempted_at").defaultNow(),
+});
+
 export const deliveryAttempts = pgTable("delivery_attempts", {
   id: uuid("id").primaryKey().defaultRandom(),
   jobID: uuid("job_id")
@@ -58,3 +70,4 @@ export const deliveryAttempts = pgTable("delivery_attempts", {
 export type Pipeline = typeof pipelines.$inferInsert;
 export type Job = typeof jobs.$inferInsert;
 export type DeliveryAttempts = typeof deliveryAttempts.$inferInsert;
+export type JobAttempts = typeof jobAttempts.$inferInsert;

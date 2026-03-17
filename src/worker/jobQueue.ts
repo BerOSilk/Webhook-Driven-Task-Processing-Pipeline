@@ -4,6 +4,7 @@ import {
 } from "../lib/db/queries/jobs.js";
 import { processAction } from "../actions/processActions.js";
 import { sendToSubscribers } from "./delivery.js";
+import { createJobAttempt } from "../lib/db/queries/jobAttempts.js";
 
 type QueueJob = {
   id: string;
@@ -107,6 +108,11 @@ export class JobQueue {
 
       await updateJobStatus(job.id, "completed");
       await updateJobProcessedPayload(job.id, processedPayload);
+      await createJobAttempt({
+        jobID: job.id,
+        status: "completed",
+        errorMessage: null,
+      });
       await sendToSubscribers(job.id, processedPayload, job.subscribers);
       this.removeFromQueue(job.id);
       console.log("completed ", job.id);
@@ -125,6 +131,11 @@ export class JobQueue {
         this.removeFromQueue(job.id);
         console.log(job.id, "failed permenantly");
       }
+      await createJobAttempt({
+        jobID: job.id,
+        status: job.status,
+        errorMessage: job.error || message,
+      });
     }
   }
 
