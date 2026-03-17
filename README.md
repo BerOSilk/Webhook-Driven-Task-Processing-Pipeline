@@ -54,7 +54,6 @@ The system consists of a few core components:
     ```bash
     npm run generate
     npm run migrate
-    ```
 
 ### Running with Docker (Recommended)
     The easiest way to run the entire stack is using Docker Compose:
