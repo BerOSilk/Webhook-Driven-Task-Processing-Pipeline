@@ -19,9 +19,8 @@ export function capitalizeAction(
       if (ignoreFields.includes(key) || typeof value !== "string") return;
 
       const data = (result.data as Record<string, unknown>) || {};
-      if (typeof value === "string") {
-        data[key] = modeProcessor(mode, value);
-      }
+      data[key] = modeProcessor(mode, value as string);
+
       result.data = data;
     });
   } else {
@@ -33,7 +32,7 @@ export function capitalizeAction(
       const data = (result.data as Record<string, unknown>) || {};
       const value = (payload as Record<string, unknown>)[field];
 
-      data[field] = modeProcessor(mode, value);
+      data[field] = modeProcessor(mode, value as string);
 
       result.data = data;
     });
@@ -70,6 +69,7 @@ function toLowerCase(value: string): string {
 }
 
 function toCapitalize(value: string): string {
+  if (value.length === 0) return value;
   return value[0].toUpperCase() + value.slice(1).toLowerCase();
 }
 

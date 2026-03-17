@@ -9,7 +9,7 @@ import {
   getPipelines,
 } from "../lib/db/queries/pipelines.js";
 
-type ActionType = "capitalize" | "replace";
+type ActionType = "capitalize" | "replace" | "filter";
 
 export async function PostPipeline(req: Request, res: Response) {
   const { name, actionType, actionConfig, subscribers } = req.body;
@@ -56,6 +56,7 @@ export async function DeletePipelines(req: Request, res: Response) {
 
 function isValidAction(action: unknown): action is ActionType {
   return (
-    typeof action === "string" && ["capitalize", "replace"].includes(action)
+    typeof action === "string" &&
+    ["capitalize", "replace", "filter"].includes(action)
   );
 }

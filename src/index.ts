@@ -9,7 +9,12 @@ import {
 } from "./controllers/pipelines.js";
 import { initializeWorker, stopWorker } from "./worker/index.js";
 import { handleWebhook } from "./controllers/webhook.js";
-import { GetJob, GetJobDeliveries, GetJobs } from "./controllers/jobs.js";
+import {
+  GetJob,
+  GetJobAttempts,
+  GetJobDeliveries,
+  GetJobs,
+} from "./controllers/jobs.js";
 
 const app = express();
 
@@ -32,6 +37,7 @@ app.get("/api/webhook/:id", handleWebhook);
 app.get("/api/job", GetJobs);
 app.get("/api/job/:id", GetJob);
 app.get("/api/job/:id/deliveries", GetJobDeliveries);
+app.get("/api/job/:id/attempts", GetJobAttempts);
 
 app.use(errorHandler);
 
