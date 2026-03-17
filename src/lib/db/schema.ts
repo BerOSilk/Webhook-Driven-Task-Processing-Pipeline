@@ -38,7 +38,6 @@ export const jobs = pgTable("jobs", {
   processedPayload: jsonb("processed_payload"),
   status: varchar("status", { length: 50 }).notNull().default("pending"),
   processedAt: timestamp("processed_at"),
-  attempts: integer("attempts").default(0),
 });
 
 export const jobAttempts = pgTable("job_attempts", {
