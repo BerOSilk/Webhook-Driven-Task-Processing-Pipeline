@@ -21,10 +21,6 @@ export async function sendToSubscribers(
       ? `?${new URLSearchParams(stringPayload).toString()}`
       : "";
 
-    console.log(subscriber.method);
-    console.log(body);
-    console.log(query);
-
     try {
       const res = await fetch(`${subscriber.url}${query}`, {
         method: subscriber.method,

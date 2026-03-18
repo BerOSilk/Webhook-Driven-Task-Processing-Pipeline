@@ -349,3 +349,38 @@ This endpoint accepts both POST & GET with any body/queries you pass, it will cr
     
     By default the filter action filters password, token, credit_card, ssn & api_key, if you want to keep them include them in the ignoreFields option.
 
+---
+
+## Architecture Overview
+
+```bash
+[Webhook Source] → [HTTP Receiver] → [Queue] → [Worker] → [Task Execution] → [Send to Subscribers]
+                          ↓
+                    [Send Response]
+```
+
+**Components**
+
+1. Webhook Receiver
+
+    🔹 Accepts incoming HTTP requests
+    🔹 Parses payload (JSON)
+    🔹 Validates authenticity
+    🔹 Quickly acknowledges request (non-blocking)
+
+2. Task Queue
+
+    🔹 Buffers incoming events
+    🔹 Decouples ingestion from processing
+    🔹 Enables retry and backpressure handling
+
+3. Worker
+
+    🔹 Consume tasks from queue
+    🔹 process bussiness logic
+    🔹 Eexcute tasks independently
+
+4. Task Execution Layer
+
+    🔹 Executes the actual logic
+    🔹 Can support multiple task types

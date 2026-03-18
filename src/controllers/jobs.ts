@@ -38,7 +38,7 @@ export async function GetJob(req: Request, res: Response) {
   res.status(200).json(job);
 }
 
-export async function GetJobDeliveries(req: Request, res: Response) {
+export async function GetJorbDeliveies(req: Request, res: Response) {
   const { id } = req.params;
   const validUUID = validate(id);
   if (!validUUID) {
